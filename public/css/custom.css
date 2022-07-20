@@ -179,8 +179,10 @@ a {
 
 .add-to-cart:hover {
     color: white;
+    transition: background-color .2s ease;
     background-color: #222222;
 }
+
 .mini-cart {
     width: 300px;
     height: 500px;
@@ -195,4 +197,14 @@ a {
     overflow: auto;
     height: 100%;
     padding: 0 30px 20px 30px;
+}
+
+.loading-cart {
+    height: 50px;
+    width: 50px;
+    margin: auto;
+}
+
+#open-cart:disabled {
+    color: gray;
 }

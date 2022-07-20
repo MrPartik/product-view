@@ -1,5 +1,5 @@
 <div class="relative bg-white overflow-hidden">
-    <div class="loading-page" wire:loading.block wire:target="selectSize, saveCart, showCart">Loading&#8230;</div>
+    <div class="loading-page" wire:loading.block wire:target="selectSize, saveCart">Loading&#8230;</div>
     <style>
         .header-product-view {
             background-color: #F6F6F7;
@@ -11,10 +11,11 @@
                 <div class="relative p-6 px-4 sm:px-6 lg:px-8">
                     <nav>
                         <div class="md:ml-10 md:pr-4 md:space-x-8 text-right">
-                            <a wire:click="showCart"  href="javascript:;" class="font-medium hover:text-indigo-500 relative" style="z-index: 999999">My Cart ({{ count($aCart) }})</a>
-                            <div class="{{ ($bShowCart === true) ? '' : 'hidden' }} mini-cart absolute right-0">
+                            <button wire:click="showCart" wire:loading.attr="disabled" href="javascript:;" id="open-cart" class="font-medium hover:text-indigo-500 relative" style="z-index: 999999">My Cart ({{ $iCartQty }})</button>
+                            <div class="{{ ($bShowCart) ? '' : 'hidden' }} mini-cart absolute right-0">
                                 <div class="container-cart">
-                                    @foreach($aCart as $aItem)
+                                    <img src="https://c.tenor.com/wpSo-8CrXqUAAAAi/loading-loading-forever.gif" alt="loading..." class="mb-5 loading-cart" wire:loading.block wire:target="showCart"></img>
+                                @foreach($aCartFormatted as $aItem)
                                         <div class="flex mb-2 mt-2">
                                             <img class="" style="width: 100px" src="{{ $aItem['image'] }}"/>
                                             <div class="ml-5">
@@ -62,4 +63,12 @@
             </main>
         </div>
     </div>
+    <script>
+        $('#open-cart').on('click', function() {
+            if($('.mini-cart').hasClass('hidden')) {
+                return $('.mini-cart').removeClass('hidden');
+            }
+            return $('.mini-cart').addClass('hidden');
+        });
+    </script>
 </div>

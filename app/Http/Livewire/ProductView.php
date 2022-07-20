@@ -39,10 +39,16 @@ class ProductView extends Component
     public $iSelectedSize = 0;
 
     /**
-     * Cart
+     * Cart Data Formatted
      * @var array
      */
-    public $aCart = [];
+    public $aCartFormatted = [];
+
+    /**
+     * Cart Qty
+     * @var array
+     */
+    public $iCartQty = 0;
 
     /**
      * @var bool
@@ -77,13 +83,22 @@ class ProductView extends Component
     public function saveCart()
     {
         if (empty($this->sSelectedSize) !== true) {
-            array_push($this->aCart, [
+
+            foreach ($this->aCartFormatted as $iKey => $aCartData) {
+                if ($aCartData['size'] === $this->sSelectedSize) {
+                    $this->aCartFormatted[$iKey]['qty']++;
+                    $this->iCartQty++;
+                    return true;
+                }
+            }
+            $this->iCartQty++;
+            $this->aCartFormatted[] = [
                 'title' => $this->aProductInfo['title'],
                 'size'  => $this->sSelectedSize,
                 'price' => $this->aProductInfo['price'],
                 'qty'   => 1,
                 'image' => $this->aProductInfo['imageURL'],
-            ]);
+            ];
             $this->sSelectedSize = '';
             $this->iSelectedSize = 0;
         }
