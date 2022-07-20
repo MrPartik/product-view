@@ -10,12 +10,12 @@
             <div class="header-product-view">
                 <div class="relative p-6 px-4 sm:px-6 lg:px-8">
                     <nav>
-                        <div class="md:ml-10 md:pr-4 md:space-x-8 text-right">
-                            <button wire:click="showCart" wire:loading.attr="disabled" href="javascript:;" id="open-cart" class="font-medium hover:text-indigo-500 relative" style="z-index: 999999">My Cart ({{ $iCartQty }})</button>
+                        <div class="cart-parent-container ml-10 pr-4 space-x-8 text-right">
+                            <button wire:click="showCart" wire:loading.attr="disabled" href="javascript:;" id="open-cart" class="font-medium hover:text-indigo-500 relative" style="z-index: 999999"><span class="icon-cart"> ({{ $iCartQty }})</span> <span class="text-cart">My Cart ({{ $iCartQty }}) </span></button>
                             <div class="{{ ($bShowCart) ? '' : 'hidden' }} mini-cart absolute right-0">
                                 <div class="container-cart">
                                     <img src="https://c.tenor.com/wpSo-8CrXqUAAAAi/loading-loading-forever.gif" alt="loading..." class="mb-5 loading-cart" wire:loading.block wire:target="showCart"></img>
-                                @foreach($aCartFormatted as $aItem)
+                                    @foreach($aCartFormatted as $aItem)
                                         <div class="flex mb-2 mt-2">
                                             <img class="" style="width: 100px" src="{{ $aItem['image'] }}"/>
                                             <div class="ml-5">
@@ -34,10 +34,10 @@
                     </nav>
                 </div>
             </div>
-            <main class="mt-10 mx-auto container" style=" padding-left: 150px; padding-right: 150px;">
-                <div class="grid grid-cols-2 gap-4">
+            <main class="mt-10 mx-auto container">
+                <div class="product-parent-container grid grid-cols-2 gap-4">
                     <div>
-                        <img style="max-width: 400px;" src="{{ $aProductInfo['imageURL'] ?? 'https://lh5.googleusercontent.com/MGOM6krXaVmFigiX3HTMG66OgUFtRDS0OhxE6JrhObYerW7Ny51PtFr0i10sTuScIry3BaDeoA3uHphCeXr72jjn879zPm3uW6hebPK3_mfqnxg9l1VJCg=w1360-h617-rw' }}" alt="T-Shirt" />
+                        <img class="featured-image" style="max-width: 400px;" src="{{ $aProductInfo['imageURL'] ?? 'https://lh5.googleusercontent.com/MGOM6krXaVmFigiX3HTMG66OgUFtRDS0OhxE6JrhObYerW7Ny51PtFr0i10sTuScIry3BaDeoA3uHphCeXr72jjn879zPm3uW6hebPK3_mfqnxg9l1VJCg=w1360-h617-rw' }}" alt="T-Shirt" />
                     </div>
                     <div class="product-container">
                         <h1> {{ $aProductInfo['title'] ?? 'Classic Tee' }}</h1>
