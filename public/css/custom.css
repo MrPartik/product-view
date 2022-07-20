@@ -218,6 +218,11 @@ a {
     content: "\f07a";
 }
 
+.container {
+    padding-left: 150px;
+    padding-right: 150px;
+}
+
 @media (max-width:810px) {
     .product-parent-container {
         grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
